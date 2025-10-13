@@ -4,5 +4,5 @@
 local map = vim.keymap.set
 map("n", ";", "<cmd>Telescope buffers<cr>", { desc = "Telescope (buffers)" })
 map("n", "~", function()
-  require("mini.files").open()
+  require("mini.files").open(vim.api.nvim_buf_get_name(0))
 end, { desc = "Open mini files" })
