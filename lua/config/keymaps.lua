@@ -9,6 +9,7 @@ map("n", "~", function()
   require("mini.files").open(vim.api.nvim_buf_get_name(0))
 end, { desc = "Open mini files" })
 map("n", "<c-p>", "<cmd>Telescope git_files<cr>", { desc = "Ctrl + P open git files" })
+map("n", "<F1>", "<cmd>Telescope keymaps<cr>", { desc = "Open F1 (keymaps)" })
 
 -- Delete annoying move lines feature
 del("i", "<A-j>")
