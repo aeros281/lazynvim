@@ -1,0 +1,82 @@
+{
+  "LiveView Handle Event": {
+    "prefix": "h_event",
+    "body": [
+      "def handle_event(\"${1:event_name}\", ${2:_params}, socket) do",
+      "\t${0}",
+      "\t{:noreply, socket}",
+      "end"
+    ],
+    "description": "Creates a handle_event/3 callback in a Phoenix LiveView."
+  },
+  "GenServer/LiveView Handle Info": {
+    "prefix": "h_info",
+    "body": [
+      "def handle_info(${1:msg}, socket) do",
+      "\t${0}",
+      "\t{:noreply, socket}",
+      "end"
+    ],
+    "description": "Creates a handle_info/2 callback."
+  },
+  "Handle :DOWN message": {
+    "prefix": "h_down",
+    "body": [
+      "def handle_info({:DOWN, _ref, :process, _pid, ${1:reason}}, state) do",
+      "\tLogger.error(\"Received a DOWN message - #{inspect(${1:reason})}\")",
+      "\t${0}",
+      "\t{:noreply, state}",
+      "end"
+    ],
+    "description": "handle_info/2 for a :DOWN message from a monitored process."
+  },
+  "Polling GenServer": {
+    "prefix": "genserver",
+    "body": [
+      "defmodule ${1:MyModule} do",
+      "  use GenServer",
+      "",
+      "  @state %{}",
+      "",
+      "  def start_link(opts) do",
+      "    state = Enum.into(opts, @state)",
+      "    GenServer.start_link(__MODULE__, state, name: state.name)",
+      "  end",
+      "",
+      "  @impl true",
+      "  def init(_opts) do",
+      "    # Start the first poll immediately after initialization.",
+      "    schedule_poll()",
+      "    {:ok, %{}}",
+      "  end",
+      "",
+      "  @impl true",
+      "  def handle_info(:poll, state) do",
+      "    # Do nothing, or add periodic work here.",
+      "    IO.puts(\"Polling...\")",
+      "    $0",
+      "    # Schedule the next poll to continue the loop.",
+      "    schedule_poll()",
+      "",
+      "    {:noreply, state}",
+      "  end",
+      "",
+      "  # Private helpers",
+      "  defp schedule_poll do",
+      "    Process.send_after(self(), :poll, 5000)",
+      "  end",
+      "end"
+    ],
+    "description": "Creates a GenServer that polls itself every 5 seconds."
+  },
+  "GenServer Client Function (call)": {
+    "prefix": "gen_func",
+    "body": [
+      "def ${1:function_name}(pid) do",
+      "  GenServer.call(pid, {:${1:function_name}})",
+      "end",
+      "$0"
+    ],
+    "description": "Creates a client function for a GenServer.call."
+  }
+}
