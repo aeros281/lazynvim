@@ -12,7 +12,7 @@
   "GenServer/LiveView Handle Info": {
     "prefix": "h_info",
     "body": [
-      "def handle_info(${1:msg}, socket) do",
+      "def handle_info({ref, ${1:msg}}, socket) do",
       "\t${0}",
       "\t{:noreply, socket}",
       "end"

@@ -9,3 +9,5 @@ opt.conceallevel = 0
 vim.g.snacks_animate = false
 vim.g.lazyvim_mini_snippets_in_completion = true
 vim.g.lazyvim_cmp = "blink"
+vim.g.autoformat = false
+vim.g.lazyvim_rust_diagnostics = "bacon-ls"
